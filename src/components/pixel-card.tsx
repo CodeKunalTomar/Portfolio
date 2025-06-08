@@ -13,8 +13,8 @@ export const PixelCard: React.FC<PixelCardProps> = ({ title, children, className
       className={`bg-content1 border-2 border-primary pixel-corners shadow-[0_0_10px_rgba(0,255,0,0.2)] ${className}`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      whileHover={{ boxShadow: "0 0 15px rgba(0,255,0,0.3)" }}
+      transition={{ type: 'tween', ease: 'easeOut', duration: 0.3 }}
+      whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(0,255,0,0.5)" }}
     >
       {title && (
         <div className="border-b-2 border-primary px-4 py-2 bg-black">

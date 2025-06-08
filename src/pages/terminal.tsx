@@ -31,19 +31,19 @@ export const TerminalPage: React.FC = () => {
             <span className="text-primary mr-2">$</span> help
           </div>
           <div className="px-3 py-1 bg-black border border-primary text-sm flex items-center">
-            <span className="text-primary mr-2">$</span> about
+            <span className="text-primary mr-2">$</span> goto &lt;section&gt;
           </div>
           <div className="px-3 py-1 bg-black border border-primary text-sm flex items-center">
-            <span className="text-primary mr-2">$</span> skills
+            <span className="text-primary mr-2">$</span> matrix [on/off]
+          </div>
+          <div className="px-3 py-1 bg-black border border-primary text-sm flex items-center">
+            <span className="text-primary mr-2">$</span> theme
           </div>
           <div className="px-3 py-1 bg-black border border-primary text-sm flex items-center">
             <span className="text-primary mr-2">$</span> projects
           </div>
           <div className="px-3 py-1 bg-black border border-primary text-sm flex items-center">
-            <span className="text-primary mr-2">$</span> contact
-          </div>
-          <div className="px-3 py-1 bg-black border border-primary text-sm flex items-center">
-            <span className="text-primary mr-2">$</span> opticonnect
+            <span className="text-primary mr-2">$</span> about
           </div>
           <div className="px-3 py-1 bg-black border border-primary text-sm flex items-center">
             <span className="text-primary mr-2">$</span> clear

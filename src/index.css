@@ -20,7 +20,7 @@ body {
   color-scheme: dark;
 }
 
-/* CRT Effect */
+/* CRT Effect ... (existing CRT styles remain unchanged) */
 .crt::before {
   content: " ";
   display: block;
@@ -84,106 +84,161 @@ body {
   position: absolute;
   width: 100%;
   height: var(--scan-line-height);
-  background-color: rgba(0, 255, 0, 0.2);
+  background-color: rgba(0, 255, 0, 0.2); /* Default theme scanline, can be overridden if needed */
   animation: scan 2s linear infinite;
 }
+.terminal-window.alt-theme .scan-line { /* Example if scanline color needs to change with theme */
+    background-color: rgba(127, 219, 255, 0.2); /* Light blue scanline for alt theme */
+}
+
 
 @keyframes scan {
-  0% {
-    top: 0%;
-  }
-  100% {
-    top: 100%;
-  }
+  0% { top: 0%; }
+  100% { top: 100%; }
 }
 
 @keyframes scanline {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 0 100%;
-  }
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100%; }
+}
+
+@keyframes animate-grid {
+  0% { background-position: 0px 0px; }
+  100% { background-position: 40px 40px; }
 }
 
 .pixel-border {
-  box-shadow: 
-    0 0 0 2px #000,
-    0 0 0 4px #00ff00;
+  box-shadow:
+    0 0 0 2px #000, /* This might need to use a variable if it should change with theme */
+    0 0 0 4px var(--terminal-border, #00ff00); /* Fallback for border */
 }
 
 .pixel-corners {
-  clip-path: 
+  clip-path:
     polygon(
-      0 10px, 
-      10px 0, 
-      calc(100% - 10px) 0, 
-      100% 10px, 
-      100% calc(100% - 10px), 
-      calc(100% - 10px) 100%, 
-      10px 100%, 
-      0 calc(100% - 10px)
+      0 10px, 10px 0,
+      calc(100% - 10px) 0, 100% 10px,
+      100% calc(100% - 10px), calc(100% - 10px) 100%,
+      10px 100%, 0 calc(100% - 10px)
     );
 }
 
+/* Terminal Styles with CSS Variables */
 .terminal-window {
-  background-color: rgba(0, 0, 0, 0.8);
-  border: 2px solid #00ff00;
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-  height: 400px;
-  overflow-y: auto;
-  padding: 1rem;
+  --terminal-bg: rgba(0, 0, 0, 0.85); /* Slightly increased opacity */
+  --terminal-text: #00ff00;
+  --terminal-border: #00ff00;
+  --terminal-prompt-text: #00ff00;
+  --terminal-header-bg: rgba(0, 0, 0, 0.9);
+  --terminal-header-text: #00ff00;
+  --terminal-box-shadow: rgba(0, 255, 0, 0.5);
+
+  background-color: var(--terminal-bg);
+  color: var(--terminal-text);
+  border: 2px solid var(--terminal-border);
+  box-shadow: 0 0 10px var(--terminal-box-shadow);
+  /* height: 400px; */ /* Let flex control height in App.tsx for terminal page */
+  /* overflow-y: auto; */ /* Moved to inner content div in terminal.tsx */
   font-family: 'JetBrains Mono', monospace;
-  color: #00ff00;
+  display: flex; /* Added for flex-direction column */
+  flex-direction: column; /* Added */
+  max-height: 70vh; /* Example max height */
 }
+
+.terminal-window.alt-theme {
+  --terminal-bg: rgba(10, 20, 35, 0.9);
+  --terminal-text: #7fdbff;
+  --terminal-border: #39cccc;
+  --terminal-prompt-text: #7fdbff;
+  --terminal-header-bg: rgba(5, 10, 20, 0.95);
+  --terminal-header-text: #7fdbff;
+  --terminal-box-shadow: rgba(57, 204, 204, 0.5);
+}
+
+.terminal-header { /* Styles for the div given this class in terminal.tsx */
+  background-color: var(--terminal-header-bg);
+  color: var(--terminal-header-text);
+  border-bottom: 2px solid var(--terminal-border);
+  padding: 0.5rem 0.75rem; /* Adjusted padding */
+  font-weight: bold;
+  /* flex, items-center, sticky, top, z-index are handled by Tailwind classes in JSX */
+}
+.terminal-header .iconify { /* Target icon within header if needed */
+    color: var(--terminal-header-text);
+}
+
 
 .terminal-input {
   background-color: transparent;
   border: none;
-  color: #00ff00;
-  font-family: 'JetBrains Mono', monospace;
+  color: var(--terminal-text); /* Use variable */
+  font-family: 'JetBrains Mono', monospace; /* Ensure font consistency */
   outline: none;
-  width: 100%;
+  width: 100%; /* Ensure it takes full width in its flex container */
 }
 
-.terminal-cursor {
-  display: inline-block;
-  width: 8px;
-  height: 16px;
-  background-color: #00ff00;
-  animation: blink 1s step-end infinite;
+.terminal-cursor { /* This is for the TypewriterOutput cursor */
+  /* className="inline-block w-2 h-4 bg-primary ml-0.5 align-baseline" */
+  /* bg-primary in Tailwind should map to the theme's primary color. */
+  /* If using CSS vars directly: background-color: var(--terminal-text); */
 }
 
 .terminal-output {
-  margin-bottom: 0.5rem;
-  white-space: pre-wrap;
+  /* margin-bottom: 0.5rem; */ /* Handled by mb-2 on history item parent */
+  white-space: pre-wrap; /* Keep for formatting of output */
+  /* color is inherited from .terminal-window */
 }
+.terminal-output ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+.terminal-output li {
+    padding-left: 1em;
+    text-indent: -1em;
+}
+.terminal-output strong { /* Make strong tags in output pop more */
+    color: var(--terminal-text); /* Ensure it uses the theme color */
+    filter: brightness(1.2);
+}
+
 
 .terminal-prompt {
-  color: #00ff00;
-  margin-right: 0.5rem;
+  color: var(--terminal-prompt-text); /* Use variable */
+  /* margin-right: 0.5rem; */ /* Handled by mr-2 on element */
+}
+.command-text { /* Class added to the command text span in terminal.tsx */
+    color: var(--terminal-text);
+    opacity: 0.8; /* Slightly dimmer than output */
 }
 
+
 .grid-bg {
-  background-image: 
+  background-image:
     linear-gradient(rgba(0, 255, 0, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 255, 0, 0.05) 1px, transparent 1px);
   background-size: 20px 20px;
+  animation: animate-grid 5s linear infinite;
+}
+.alt-theme .grid-bg { /* Example if grid should change with theme */
+    background-image:
+    linear-gradient(rgba(127, 219, 255, 0.07) 1px, transparent 1px), /* Light blue grid */
+    linear-gradient(90deg, rgba(127, 219, 255, 0.07) 1px, transparent 1px);
 }
 
-/* Pixelated button */
+
+/* Pixelated button ... (existing button styles remain unchanged) */
 .pixel-btn {
   position: relative;
-  background-color: #000;
-  color: #00ff00;
-  border: 2px solid #00ff00;
+  background-color: #000; /* Or var(--btn-bg, #000) if buttons need theming */
+  color: #00ff00; /* Or var(--btn-text, #00ff00) */
+  border: 2px solid #00ff00; /* Or var(--btn-border, #00ff00) */
   padding: 8px 16px;
   font-family: 'Press Start 2P', cursive;
   font-size: 14px;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.1s;
-  box-shadow: 4px 4px 0 #00ff00;
+  box-shadow: 4px 4px 0 #00ff00; /* Or var(--btn-shadow, #00ff00) */
 }
 
 .pixel-btn:hover {
@@ -196,7 +251,7 @@ body {
   box-shadow: 0 0 0 #00ff00;
 }
 
-/* Glitch effect for text */
+/* Glitch effect for text ... (existing glitch styles remain unchanged) */
 .glitch-text {
   position: relative;
   animation: glitch-skew 1s infinite linear alternate-reverse;
@@ -238,7 +293,6 @@ body {
     clip: rect(5px, 9999px, 66px, 0);
     transform: skew(0.01deg);
   }
-  /* ... more keyframes ... */
   100% {
     clip: rect(91px, 9999px, 74px, 0);
     transform: skew(0.05deg);
@@ -246,9 +300,39 @@ body {
 }
 
 @keyframes glitch-anim2 {
-  /* ... keyframes ... */
+  0% { clip: rect(23px, 9999px, 9px, 0); transform: skew(0.58deg); }
+  5% { clip: rect(28px, 9999px, 99px, 0); transform: skew(0.4deg); }
+  10% { clip: rect(40px, 9999px, 9px, 0); transform: skew(0.33deg); }
+  15% { clip: rect(18px, 9999px, 7px, 0); transform: skew(0.1deg); }
+  20% { clip: rect(7px, 9999px, 50px, 0); transform: skew(0.4deg); }
+  25% { clip: rect(4px, 9999px, 100px, 0); transform: skew(0.41deg); }
+  30% { clip: rect(85px, 9999px, 23px, 0); transform: skew(0.14deg); }
+  35% { clip: rect(47px, 9999px, 1px, 0); transform: skew(0.3deg); }
+  40% { clip: rect(38px, 9999px, 50px, 0); transform: skew(0.68deg); }
+  45% { clip: rect(17px, 9999px, 6px, 0); transform: skew(0.11deg); }
+  50% { clip: rect(7px, 9999px, 6px, 0); transform: skew(0.43deg); }
+  55% { clip: rect(52px, 9999px, 70px, 0); transform: skew(0.64deg); }
+  60% { clip: rect(7px, 9999px, 6px, 0); transform: skew(0.58deg); }
+  65% { clip: rect(21px, 9999px, 6px, 0); transform: skew(0.28deg); }
+  70% { clip: rect(88px, 9999px, 42px, 0); transform: skew(0.21deg); }
+  75% { clip: rect(8px, 9999px, 7px, 0); transform: skew(0.52deg); }
+  80% { clip: rect(8px, 9999px, 7px, 0); transform: skew(0.16deg); }
+  85% { clip: rect(69px, 9999px, 55px, 0); transform: skew(0.48deg); }
+  90% { clip: rect(53px, 9999px, 25px, 0); transform: skew(0.76deg); }
+  95% { clip: rect(8px, 9999px, 7px, 0); transform: skew(0.03deg); }
+  100% { clip: rect(10px, 9999px, 75px, 0); transform: skew(0.73deg); }
 }
 
 @keyframes glitch-skew {
-  /* ... keyframes ... */
+  0% { transform: skew(-4deg); }
+  10% { transform: skew(1deg); }
+  20% { transform: skew(-1deg); }
+  30% { transform: skew(2deg); }
+  40% { transform: skew(1deg); }
+  50% { transform: skew(-4deg); }
+  60% { transform: skew(3deg); }
+  70% { transform: skew(-2deg); }
+  80% { transform: skew(1deg); }
+  90% { transform: skew(-1deg); }
+  100% { transform: skew(4deg); }
 }
