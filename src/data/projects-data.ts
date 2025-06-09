@@ -24,7 +24,7 @@ export const projectsData: Project[] = [
     liveDemoUrl: "https://opticonnect.vercel.app/",
     details: (
       <div>
-        <p>An AI-powered Connect-4 game demonstrating strategic algorithms. Features adaptive difficulty levels based on Minimax search depth.</p>
+        <p>An AI driven Connect-4 game demonstrating strategic algorithms. Features adaptive difficulty levels based on Minimax search depth.</p>
         <p>Further details can include key learnings, challenges, and specific contributions if this were a real project description.</p>
       </div>
     )
