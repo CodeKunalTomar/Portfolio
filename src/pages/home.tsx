@@ -8,6 +8,81 @@ import { PixelCard } from "../components/pixel-card";
 
 export const HomePage = () => {
   const containerRef = useRef(null);
+  const [displayText, setDisplayText] = React.useState("");
+
+  React.useEffect(() => {
+    const text1 = "HELLO_WORLD";
+    const text2 = "KUNAL TOMAR";
+    let isMounted = true;
+
+    const animate = async () => {
+      const typeLTR = async (text: string) => {
+        for (let i = 0; i <= text.length; i++) {
+          if (!isMounted) return;
+          setDisplayText(text.substring(0, i));
+          await new Promise(r => setTimeout(r, 100));
+        }
+      };
+
+      const typeRTL = async (text: string) => {
+        for (let i = text.length - 1; i >= 0; i--) {
+          if (!isMounted) return;
+          setDisplayText(text.substring(i));
+          await new Promise(r => setTimeout(r, 100));
+        }
+      };
+
+      const deleteLTR = async (text: string) => {
+        for (let i = text.length; i >= 0; i--) {
+          if (!isMounted) return;
+          setDisplayText(text.substring(0, i));
+          await new Promise(r => setTimeout(r, 50)); // Faster backspace
+        }
+      };
+
+      const deleteRTL = async (text: string) => {
+        for (let i = 0; i <= text.length; i++) {
+          if (!isMounted) return;
+          setDisplayText(text.substring(i));
+          await new Promise(r => setTimeout(r, 50)); // Faster un-build
+        }
+      };
+
+      const pause = async (ms = 2000) => {
+        await new Promise(r => setTimeout(r, ms));
+      };
+
+      while (isMounted) {
+        // 1. HELLO_WORLD (Reverse/RTL)
+        await typeRTL(text1);
+        await pause();
+        await deleteRTL(text1); // Un-build from left
+        await pause(500);
+
+        // 2. KUNAL TOMAR (Forward/LTR)
+        await typeLTR(text2);
+        await pause();
+        await deleteLTR(text2); // Backspace from right
+        await pause(500);
+
+        // 3. HELLO_WORLD (Forward/LTR)
+        await typeLTR(text1);
+        await pause();
+        await deleteLTR(text1); // Backspace from right
+        await pause(500);
+
+        // 4. KUNAL TOMAR (Reverse/RTL)
+        await typeRTL(text2);
+        await pause();
+        await deleteRTL(text2); // Un-build from left
+        await pause(500);
+      }
+    };
+
+    animate();
+
+    return () => { isMounted = false; };
+  }, []);
 
   const socialLinks = [
     { icon: "lucide:github", href: "https://github.com/kunaltomarmu26", label: "GitHub" },
@@ -29,9 +104,10 @@ export const HomePage = () => {
             transition={{ duration: 0.5 }}
             className="space-y-2"
           >
-            <h2 className="text-xl md:text-2xl text-primary font-pixel">HELLO_WORLD</h2>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter glitch-text" data-text="KUNAL TOMAR">
-              KUNAL TOMAR
+            <h2 className="text-xl md:text-2xl text-primary font-pixel h-8"></h2>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter glitch-text min-h-[1.2em]">
+              {displayText}
+              <span className="animate-pulse text-primary">_</span>
             </h1>
             <h3 className="text-xl md:text-2xl text-foreground-500 font-pixel mt-2">
               FINAL-YEAR CS STUDENT & <br />

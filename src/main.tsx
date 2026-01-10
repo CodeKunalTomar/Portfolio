@@ -6,6 +6,7 @@ import App from './App.tsx'
 import './index.css'
 import { ThemeProvider } from './context/ThemeContext'
 import { SoundProvider } from './context/SoundContext'
+import { RobotProvider } from './context/RobotContext'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -15,7 +16,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <div className="dark crt">
           <ThemeProvider>
             <SoundProvider>
-              <App />
+              <RobotProvider>
+                <App />
+              </RobotProvider>
             </SoundProvider>
           </ThemeProvider>
         </div>
