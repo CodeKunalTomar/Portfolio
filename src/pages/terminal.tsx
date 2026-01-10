@@ -6,7 +6,7 @@ import { Terminal } from "../components/terminal";
 export const TerminalPage: React.FC = () => {
   return (
     <div>
-      <motion.h1 
+      <motion.h1
         className="font-pixel text-primary text-2xl sm:text-3xl mb-8"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -14,7 +14,7 @@ export const TerminalPage: React.FC = () => {
       >
         TERMINAL.ACCESS
       </motion.h1>
-      
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -25,7 +25,7 @@ export const TerminalPage: React.FC = () => {
           <Icon icon="lucide:terminal" className="mr-2 text-primary" />
           Enter commands to interact with the system and retrieve information.
         </p>
-        
+
         <div className="flex flex-wrap gap-2 mb-4">
           <div className="px-3 py-1 bg-black border border-primary text-sm flex items-center">
             <span className="text-primary mr-2">$</span> help
@@ -50,10 +50,10 @@ export const TerminalPage: React.FC = () => {
           </div>
         </div>
       </motion.div>
-      
+
       <Terminal />
-      
-      <motion.div 
+
+      <motion.div
         className="mt-8 bg-black border-2 border-primary p-4 pixel-corners"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -64,7 +64,7 @@ export const TerminalPage: React.FC = () => {
           <div>
             <p className="flex items-center">
               <span className="text-foreground-500 mr-2">OS:</span>
-              <span>Portfolio.OS v1.0.0</span>
+              <span>Portfolio.OS v1.1.0</span>
             </p>
             <p className="flex items-center">
               <span className="text-foreground-500 mr-2">Kernel:</span>
@@ -72,7 +72,7 @@ export const TerminalPage: React.FC = () => {
             </p>
             <p className="flex items-center">
               <span className="text-foreground-500 mr-2">Shell:</span>
-              <span>KT-Terminal 1.0.0</span>
+              <span>KT-Terminal 1.1.0</span>
             </p>
           </div>
           <div>

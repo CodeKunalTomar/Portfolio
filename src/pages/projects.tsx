@@ -16,73 +16,118 @@ interface Project {
 
 export const ProjectsPage: React.FC = () => {
   const [selectedProject, setSelectedProject] = React.useState<Project | null>(null);
-  
+
   const projects: Project[] = [
     {
+      id: 3,
+      title: "Autonomous GPS-Denied Drone Navigation",
+      description: "Production-ready autonomous navigation system featuring real-time obstacle detection and PX4 integration.",
+      technologies: ["ROS2", "PX4", "OpenCV", "Python", "C++"],
+      image: "https://images.unsplash.com/photo-1579829366248-204fe8413f31?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      details: (
+        <div>
+          <div className="flex items-center gap-2 mb-4">
+            <span className="bg-green-500/20 text-green-500 px-3 py-1 text-sm font-bold border border-green-500">
+              COMPLETE & TESTED
+            </span>
+          </div>
+
+          <h3 className="font-bold text-lg mb-2">Project Overview</h3>
+          <p className="mb-4">
+            A production-ready autonomous navigation system for drones operating in GPS-denied environments. Features real-time obstacle detection, intelligent path planning, and direct PX4 autopilot integration.
+          </p>
+
+          <h3 className="font-bold text-lg mb-2">System Capabilities</h3>
+          <ul className="list-disc pl-5 mb-4 space-y-2">
+            <li><strong>Real-Time Obstacle Detection:</strong> 10Hz processing with &lt;100ms emergency avoidance response.</li>
+            <li><strong>GPS-Denied Navigation:</strong> Autonomous waypoint following and dynamic path planning.</li>
+            <li><strong>PX4 Integration:</strong> Direct ROS2 bridge for trajectory setpoint control.</li>
+            <li><strong>Safety Critical:</strong> Obstacle detection override capabilities for safe operation.</li>
+          </ul>
+
+          <h3 className="font-bold text-lg mb-2">Architecture</h3>
+          <ul className="list-disc pl-5 mb-4 space-y-2">
+            <li><strong>Core:</strong> ROS2 Humble, PX4 Autopilot</li>
+            <li><strong>Vision:</strong> OpenCV + cv_bridge (Depth image analysis)</li>
+            <li><strong>Mapping:</strong> rtabmap (Visual SLAM)</li>
+          </ul>
+
+          <div className="mt-6">
+            <h3 className="font-bold mb-2">Links</h3>
+            <a
+              href="https://github.com/CodeKunalTomar/autonomous-gps-denied-drone-navigation"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline flex items-center"
+            >
+              <Icon icon="lucide:github" className="mr-2" />
+              GitHub Repository
+            </a>
+          </div>
+        </div>
+      )
+    },
+    {
       id: 1,
-      title: "OptiConnect – AI Solver",
-      description: "AI-driven Connect-4 web application that simulates intelligent gameplay using recursive evaluation and heuristic scoring.",
-      technologies: ["JavaScript", "HTML5", "CSS3", "Heuristic AI", "Recursive Search Algorithms"],
-      image: "https://i.imgur.com/krYZkYu.png", // This would be replaced with the actual image in a real implementation
+      title: "Autonomous Multi-Robot Coordination System",
+      description: "A ROS2-based system for synchronized control of dual 7-DOF robotic arms with real-time computer vision.",
+      technologies: ["Python", "C++", "ROS2", "OpenCV", "PyBullet"],
+      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
       details: (
         <div>
           <h3 className="font-bold text-lg mb-2">Project Overview</h3>
           <p className="mb-4">
-            Connect-4, a classic alignment game, has captivated players since its commercialization in 1974. 
-            This project explores its computational and strategic depth through an AI opponent built using 
-            Minimax with Alpha-Beta pruning and adaptive difficulty levels.
+            Designed and developed an autonomous multi-robot coordination system integrating ROS2-based communication, real-time computer vision, and inverse kinematics for synchronized control of dual 7-DOF robotic arms in a PyBullet simulation environment.
           </p>
-          
+
           <h3 className="font-bold text-lg mb-2">Key Features</h3>
-          <ul className="list-disc pl-5 mb-4 space-y-1">
-            <li>Implemented depth-limited search and board-state heuristics to mimic strategic planning and opponent prediction</li>
-            <li>Built a dynamic difficulty module that adjusts AI behavior based on selected challenge levels, enhancing user engagement</li>
-            <li>Modeled decision-making patterns inspired by game theory and Minimax-style algorithms under real-time constraints</li>
+          <ul className="list-disc pl-5 mb-4 space-y-2">
+            <li>Implemented a multi-camera vision pipeline using OpenCV, Hough transforms, and Bayesian confidence scoring, enabling robust object detection and spatial awareness.</li>
+            <li>Developed a ROS2 communication architecture with custom message definitions and optimized QoS configurations for reliable multi-robot operation.</li>
+            <li>Engineered a damped least squares inverse kinematics solver and collision-avoidance framework, achieving smooth trajectory planning and safe cooperative motion.</li>
+            <li>Achieved synchronized control of dual 7-DOF robotic arms in simulation.</li>
           </ul>
-          
-          <h3 className="font-bold text-lg mb-2">Technical Implementation</h3>
+        </div>
+      )
+    },
+    {
+      id: 2,
+      title: "OptiConnect: Connect-4 AI",
+      description: "Browser-based Connect-4 game with non-blocking AI opponent using Web Workers and Minimax algorithm.",
+      technologies: ["JavaScript", "HTML5", "CSS3", "Web Workers", "Minimax"],
+      image: "https://images.unsplash.com/photo-1611996575749-79a3a250f948?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      details: (
+        <div>
+          <h3 className="font-bold text-lg mb-2">Project Overview</h3>
           <p className="mb-4">
-            The AI uses Minimax with Alpha-Beta pruning to evaluate potential moves, with a scoring heuristic 
-            that considers both immediate threats and strategic positioning. The algorithm is implemented with 
-            iterative deepening to provide adjustable difficulty levels.
+            Built a browser-based 7x7 Connect-4 game with an AI opponent, using JavaScript and Web Workers to enable concurrent computation while keeping the interface smooth and responsive.
           </p>
-          
-          <div className="bg-black p-4 rounded-sm mb-4 overflow-x-auto">
-            <pre className="text-primary text-sm">
-{`function think(node, player, recursionsRemaining) {
-  for (let col = 0; col < TOTAL_COLUMNS; col++) {
-    const childNode = new GameState(node);
-    childNode.makeMove(player, col);
-    if (recursionsRemaining > 0) {
-      think(childNode, nextPlayer, recursionsRemaining - 1);
-    }
-    // Alpha-beta pruning
-    if (player === 2 && childNode.score > node.score) {
-      node.score = childNode.score; // Maximizer
-    } else if (player === 1 && childNode.score < node.score) {
-      node.score = childNode.score; // Minimizer
-    }
-  }
-}`}
-            </pre>
-          </div>
-          
-          <h3 className="font-bold text-lg mb-2">Adaptive Difficulty</h3>
-          <p>
-            The AI features five difficulty levels, implemented through iterative deepening:
-          </p>
-          <ul className="list-disc pl-5 mb-4 space-y-1">
-            <li>Level 1: Depth=2 (fast, weak)</li>
-            <li>Level 2: Depth=3 (beginner-friendly)</li>
-            <li>Level 3: Depth=4 (moderate challenge)</li>
-            <li>Level 4: Depth=5 (advanced)</li>
-            <li>Level 5: Depth=6 (unbeatable)</li>
+
+          <h3 className="font-bold text-lg mb-2">Key Features</h3>
+          <ul className="list-disc pl-5 mb-4 space-y-2">
+            <li>Designed a modular architecture separating UI handling and background computation using Web Workers.</li>
+            <li>Implemented a depth-limited minimax algorithm with randomized tie-breaking for decision quality and performance.</li>
+            <li>Optimized for large search spaces with efficient tree traversal.</li>
+            <li>Delivered a polished user experience with animated chip drops and real-time win highlighting.</li>
           </ul>
+
+          <div className="mt-6">
+            <h3 className="font-bold mb-2">Links</h3>
+            <a
+              href="https://opticonnect.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline flex items-center"
+            >
+              <Icon icon="lucide:external-link" className="mr-2" />
+              Live Demo
+            </a>
+          </div>
         </div>
       )
     }
   ];
-  
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -92,7 +137,7 @@ export const ProjectsPage: React.FC = () => {
       }
     }
   };
-  
+
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 }
@@ -100,7 +145,7 @@ export const ProjectsPage: React.FC = () => {
 
   return (
     <div>
-      <motion.h1 
+      <motion.h1
         className="font-pixel text-primary text-2xl sm:text-3xl mb-8"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -108,7 +153,7 @@ export const ProjectsPage: React.FC = () => {
       >
         PROJECTS.LIST
       </motion.h1>
-      
+
       {selectedProject ? (
         <motion.div
           initial={{ opacity: 0 }}
@@ -116,7 +161,7 @@ export const ProjectsPage: React.FC = () => {
           exit={{ opacity: 0 }}
         >
           <div className="mb-4">
-            <PixelButton 
+            <PixelButton
               onClick={() => setSelectedProject(null)}
               className="flex items-center"
             >
@@ -124,13 +169,13 @@ export const ProjectsPage: React.FC = () => {
               Back to Projects
             </PixelButton>
           </div>
-          
+
           <PixelCard>
             <div className="flex flex-col md:flex-row gap-6">
               <div className="w-full md:w-1/3">
                 <div className="relative border-2 border-primary overflow-hidden pixel-corners">
-                  <img 
-                    src={selectedProject.image} 
+                  <img
+                    src={selectedProject.image}
                     alt={selectedProject.title}
                     className="w-full h-auto object-cover"
                   />
@@ -140,7 +185,7 @@ export const ProjectsPage: React.FC = () => {
                     ))}
                   </div>
                 </div>
-                
+
                 <div className="mt-4">
                   <h3 className="font-bold mb-2">Technologies</h3>
                   <div className="flex flex-wrap gap-2">
@@ -151,16 +196,15 @@ export const ProjectsPage: React.FC = () => {
                     ))}
                   </div>
                 </div>
-                
-                {/* Keep the Connect4 component but it now only shows the Play OptiConnect button */}
-                {selectedProject.id === 1 && (
+
+                {selectedProject.id === 2 && (
                   <div className="mt-6">
                     <h3 className="font-bold mb-2">Interactive Demo</h3>
                     <Connect4 className="mt-2" />
                   </div>
                 )}
               </div>
-              
+
               <div className="w-full md:w-2/3">
                 <h2 className="font-pixel text-primary text-xl mb-4">{selectedProject.title}</h2>
                 {selectedProject.details}
@@ -169,7 +213,7 @@ export const ProjectsPage: React.FC = () => {
           </PixelCard>
         </motion.div>
       ) : (
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 gap-8"
           variants={containerVariants}
           initial="hidden"
@@ -179,8 +223,8 @@ export const ProjectsPage: React.FC = () => {
             <motion.div key={project.id} variants={itemVariants}>
               <PixelCard className="h-full">
                 <div className="relative border-2 border-primary overflow-hidden pixel-corners mb-4">
-                  <img 
-                    src={project.image} 
+                  <img
+                    src={project.image}
                     alt={project.title}
                     className="w-full h-48 object-cover"
                   />
@@ -190,10 +234,10 @@ export const ProjectsPage: React.FC = () => {
                     ))}
                   </div>
                 </div>
-                
+
                 <h2 className="font-pixel text-primary text-lg mb-2">{project.title}</h2>
                 <p className="mb-4">{project.description}</p>
-                
+
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.slice(0, 3).map((tech, index) => (
                     <span key={index} className="px-2 py-1 border border-primary text-xs">
@@ -206,7 +250,7 @@ export const ProjectsPage: React.FC = () => {
                     </span>
                   )}
                 </div>
-                
+
                 <PixelButton onClick={() => setSelectedProject(project)}>
                   <span className="flex items-center">
                     <Icon icon="lucide:info" className="mr-2" />

@@ -44,8 +44,8 @@ export default {
   plugins: [
     heroui({
       layout: {
-        dividerWeight: "1px", 
-        disabledOpacity: 0.45, 
+        dividerWeight: "1px",
+        disabledOpacity: 0.45,
         fontSize: {
           tiny: "0.75rem",
           small: "0.875rem",
@@ -53,20 +53,20 @@ export default {
           large: "1.125rem",
         },
         lineHeight: {
-          tiny: "1rem", 
-          small: "1.25rem", 
-          medium: "1.5rem", 
-          large: "1.75rem", 
+          tiny: "1rem",
+          small: "1.25rem",
+          medium: "1.5rem",
+          large: "1.75rem",
         },
         radius: {
-          small: "0px", 
-          medium: "0px", 
-          large: "0px", 
+          small: "0px",
+          medium: "0px",
+          large: "0px",
         },
         borderWidth: {
-          small: "2px", 
-          medium: "2px", 
-          large: "4px", 
+          small: "2px",
+          medium: "2px",
+          large: "4px",
         },
       },
       themes: {
@@ -101,17 +101,17 @@ export default {
               DEFAULT: "#00ff00"
             },
             primary: {
-              50: "#001000",
-              100: "#002000",
-              200: "#003000",
-              300: "#004000",
-              400: "#005000",
-              500: "#00ff00",
-              600: "#33ff33",
-              700: "#66ff66",
-              800: "#99ff99",
-              900: "#ccffcc",
-              DEFAULT: "#00ff00",
+              50: "rgba(var(--primary-rgb), 0.05)",
+              100: "rgba(var(--primary-rgb), 0.1)",
+              200: "rgba(var(--primary-rgb), 0.2)",
+              300: "rgba(var(--primary-rgb), 0.3)",
+              400: "rgba(var(--primary-rgb), 0.4)",
+              500: "rgb(var(--primary-rgb))",
+              600: "rgba(var(--primary-rgb), 0.6)",
+              700: "rgba(var(--primary-rgb), 0.7)",
+              800: "rgba(var(--primary-rgb), 0.8)",
+              900: "rgba(var(--primary-rgb), 0.9)",
+              DEFAULT: "rgb(var(--primary-rgb))",
               foreground: "#000000"
             }
           }

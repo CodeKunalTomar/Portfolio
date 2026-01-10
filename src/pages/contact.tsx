@@ -10,11 +10,11 @@ export const ContactPage: React.FC = () => {
   const [email, setEmail] = React.useState("");
   const [message, setMessage] = React.useState("");
   const [isSubmitting, setIsSubmitting] = React.useState(false);
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     setTimeout(() => {
       addToast({
@@ -22,7 +22,7 @@ export const ContactPage: React.FC = () => {
         description: "Thank you for your message. I'll get back to you soon!",
         timeout: 5000,
       });
-      
+
       setName("");
       setEmail("");
       setMessage("");
@@ -32,7 +32,7 @@ export const ContactPage: React.FC = () => {
 
   return (
     <div>
-      <motion.h1 
+      <motion.h1
         className="font-pixel text-primary text-2xl sm:text-3xl mb-8"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -40,7 +40,7 @@ export const ContactPage: React.FC = () => {
       >
         CONTACT.ME
       </motion.h1>
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -49,7 +49,7 @@ export const ContactPage: React.FC = () => {
         >
           <PixelCard>
             <h2 className="font-pixel text-primary text-xl mb-6">GET IN TOUCH</h2>
-            
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <Input
@@ -61,7 +61,7 @@ export const ContactPage: React.FC = () => {
                   className="border-primary"
                 />
               </div>
-              
+
               <div>
                 <Input
                   label="Email"
@@ -73,7 +73,7 @@ export const ContactPage: React.FC = () => {
                   className="border-primary"
                 />
               </div>
-              
+
               <div>
                 <Textarea
                   label="Message"
@@ -84,7 +84,7 @@ export const ContactPage: React.FC = () => {
                   className="border-primary min-h-[150px]"
                 />
               </div>
-              
+
               <div>
                 <PixelButton type="submit" className="w-full">
                   {isSubmitting ? (
@@ -103,7 +103,7 @@ export const ContactPage: React.FC = () => {
             </form>
           </PixelCard>
         </motion.div>
-        
+
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -111,7 +111,7 @@ export const ContactPage: React.FC = () => {
         >
           <PixelCard className="mb-8">
             <h2 className="font-pixel text-primary text-xl mb-6">CONTACT INFO</h2>
-            
+
             <div className="space-y-4">
               <div className="flex items-start">
                 <div className="w-10 h-10 bg-black border border-primary flex items-center justify-center mr-4">
@@ -119,57 +119,55 @@ export const ContactPage: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-bold">Email</h3>
-                  <p className="text-foreground-500">kunaltomarmu26@gmail.com</p>
+                  <a href="mailto:kunaltomarmu26@gmail.com" className="text-foreground-500 hover:text-primary">kunaltomarmu26@gmail.com</a>
                 </div>
               </div>
-              
+
               <div className="flex items-start">
                 <div className="w-10 h-10 bg-black border border-primary flex items-center justify-center mr-4">
                   <Icon icon="lucide:phone" className="text-primary" />
                 </div>
                 <div>
                   <h3 className="font-bold">Phone</h3>
-                  <p className="text-foreground-500">8770782647</p>
-                  <p className="text-foreground-500">9826234042 (Alternative)</p>
+                  <p className="text-foreground-500">(+91) 8770782647</p>
                 </div>
               </div>
-              
+
               <div className="flex items-start">
                 <div className="w-10 h-10 bg-black border border-primary flex items-center justify-center mr-4">
                   <Icon icon="lucide:map-pin" className="text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-bold">Address</h3>
+                  <h3 className="font-bold">Location</h3>
                   <p className="text-foreground-500">
-                    441, VIP Paraspar Nagar,<br />
-                    Indore (M.P., INDIA)- 452001
+                    Indore, Madhya Pradesh
                   </p>
                 </div>
               </div>
             </div>
           </PixelCard>
-          
+
           <PixelCard>
             <h2 className="font-pixel text-primary text-xl mb-6">CONNECT ONLINE</h2>
-            
+
             <div className="grid grid-cols-2 gap-4">
-              <a 
-                href="https://github.com/CodeKunalTomar" 
-                target="_blank" 
+              <a
+                href="https://github.com/CodeKunalTomar"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col items-center p-4 border border-primary hover:bg-black transition-colors"
+                className="flex flex-col items-center p-4 border border-primary hover:bg-black transition-colors group"
               >
-                <Icon icon="lucide:github" className="text-3xl mb-2 text-primary" />
+                <Icon icon="lucide:github" className="text-3xl mb-2 text-primary group-hover:scale-110 transition-transform" />
                 <span>GitHub</span>
               </a>
-              
-              <a 
-                href="https://www.linkedin.com/in/kunal-tomar-ab0960248/" 
-                target="_blank" 
+
+              <a
+                href="https://linkedin.com/in/kunal-tomar1"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col items-center p-4 border border-primary hover:bg-black transition-colors"
+                className="flex flex-col items-center p-4 border border-primary hover:bg-black transition-colors group"
               >
-                <Icon icon="lucide:linkedin" className="text-3xl mb-2 text-primary" />
+                <Icon icon="lucide:linkedin" className="text-3xl mb-2 text-primary group-hover:scale-110 transition-transform" />
                 <span>LinkedIn</span>
               </a>
             </div>
