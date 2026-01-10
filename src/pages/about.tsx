@@ -62,12 +62,13 @@ export const AboutPage: React.FC = () => {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex flex-col h-full"
         >
           <h2 className="font-pixel text-2xl text-primary mb-4 flex items-center">
             <Icon icon="lucide:graduation-cap" className="mr-3" />
             EDUCATION
           </h2>
-          <div className="bg-black border border-primary p-4 h-full">
+          <div className="bg-black border border-primary p-4 flex-1">
             <h3 className="text-xl font-bold mb-1">Medicaps University</h3>
             <p className="text-primary text-sm mb-2">Aug 2022 - April 2026 (expected)</p>
             <p className="mb-2">B.Tech in Computer Science and Engineering</p>
@@ -80,12 +81,13 @@ export const AboutPage: React.FC = () => {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
+          className="flex flex-col h-full"
         >
           <h2 className="font-pixel text-2xl text-primary mb-4 flex items-center">
             <Icon icon="lucide:trophy" className="mr-3" />
             ACHIEVEMENTS
           </h2>
-          <div className="bg-black border border-primary p-4 h-full">
+          <div className="bg-black border border-primary p-4 flex-1">
             <ul className="list-disc list-inside space-y-2">
               <li>
                 <span className="font-bold text-primary">NPTEL Elite + Gold (Top 1%)</span>
