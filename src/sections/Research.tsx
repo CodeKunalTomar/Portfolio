@@ -79,11 +79,19 @@ export function Research() {
       <Reveal delay={0.1}>
         <article className="flex flex-wrap items-center gap-4 rounded-xl border border-edge bg-panel p-6">
           <span className="flex h-14 w-24 shrink-0 items-center justify-center rounded-lg bg-white p-2">
-            <img src="/logos/medicaps.webp" alt="Medi-Caps University logo" className="max-h-full max-w-full object-contain" loading="lazy" />
+            <img src="/logos/medicaps.webp" alt="Medicaps University logo" className="max-h-full max-w-full object-contain" loading="lazy" />
           </span>
           <div className="min-w-0 flex-1">
-            <h3 className="font-display text-lg font-semibold text-snow">Medi-Caps University, Indore</h3>
+            <h3 className="font-display text-lg font-semibold text-snow">Medicaps University, Indore</h3>
             <p className="text-sm text-fog">B.Tech, Computer Science & Engineering · AI specialization · CGPA 8.89 / 10</p>
+            <a
+              href="https://academic-dashboard-nu.vercel.app"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-1.5 inline-block font-mono text-xs text-cyan transition-colors hover:text-snow"
+            >
+              grade analytics - trends across all 8 semesters →
+            </a>
           </div>
           <span className="font-mono text-xs text-cyan">2022 - 2026</span>
         </article>

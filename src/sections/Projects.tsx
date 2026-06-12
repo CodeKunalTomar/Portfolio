@@ -30,14 +30,6 @@ const PROJECTS = [
     href: 'https://github.com/CodeKunalTomar/OptiConnect',
     live: 'https://opticonnect.vercel.app',
   },
-  {
-    name: 'Academic-Dashboard',
-    title: 'Academic Dashboard',
-    desc: 'Eight semesters of grades as a single self-contained HTML file: GPA trajectory, credit-weighted domain strengths, semester drill-downs, and ten interactive charts in a bento layout.',
-    stack: ['HTML', 'CSS', 'Plotly.js'],
-    href: 'https://github.com/CodeKunalTomar/Academic-Dashboard',
-    live: 'https://academic-dashboard-nu.vercel.app',
-  },
 ]
 
 export function Projects() {

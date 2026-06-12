@@ -75,6 +75,19 @@ export function Nav() {
           resume
         </a>
       </nav>
+      <div className="flex gap-5 overflow-x-auto border-t border-edge/60 px-5 py-2.5 md:hidden">
+        {LINKS.map(l => (
+          <a
+            key={l.id}
+            href={`#${l.id}`}
+            className={`shrink-0 font-mono text-xs transition-colors ${
+              active === l.id ? 'text-cyan' : 'text-fog'
+            }`}
+          >
+            {l.label}
+          </a>
+        ))}
+      </div>
     </header>
   )
 }
