@@ -30,6 +30,14 @@ const PROJECTS = [
     href: 'https://github.com/CodeKunalTomar/OptiConnect',
     live: 'https://opticonnect.vercel.app',
   },
+  {
+    name: 'Academic-Dashboard',
+    title: 'Academic Dashboard',
+    desc: 'Eight semesters of grades as a single self-contained HTML file: GPA trajectory, credit-weighted domain strengths, semester drill-downs, and ten interactive charts in a bento layout.',
+    stack: ['HTML', 'CSS', 'Plotly.js'],
+    href: 'https://github.com/CodeKunalTomar/Academic-Dashboard',
+    live: 'https://academic-dashboard-nu.vercel.app',
+  },
 ]
 
 export function Projects() {
@@ -61,6 +69,18 @@ export function Projects() {
           </article>
         </Reveal>
       ))}
+      <Reveal delay={0.35}>
+        <a
+          href="https://github.com/CodeKunalTomar?tab=repositories"
+          target="_blank"
+          rel="noreferrer"
+          className="group flex h-full min-h-[10rem] flex-col items-center justify-center rounded-xl border border-dashed border-edge p-6 transition-colors hover:border-cyan/50"
+        >
+          <p className="font-mono text-sm text-fog transition-colors group-hover:text-cyan">
+            more experiments on github →
+          </p>
+        </a>
+      </Reveal>
     </div>
   )
 }
